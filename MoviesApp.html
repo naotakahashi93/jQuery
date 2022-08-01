@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies App!</title>
+</head>
+<body>
+    <form class = "movieform">
+        Title
+        <input type="text" class="title" required minlength="2">    
+        <br>
+        Rating
+        <input type="number" class="rating" min="2" max="10" required > 
+        <br>
+        <button type="submit"> SUBMIT! </button>
+
+    </form>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+<script>
+
+
+
+     $(".movieform").on("submit", function(e){
+        e.preventDefault(); // prevent the default refresh
+        let title = $(".title").val(); // setting title variable to the value of the title input form
+        let rating = $(".rating").val(); // setting rating variable to the value of the rating input form
+        const div = $("div")
+        $("form").append("<div> DIV </div>") //creating a div under the form where the movies will go
+        $("div").last().text(`${title} ${rating}` ) // append the title and rating values to the div of the page
+        $("div").last().append("<button id='remove'> REMOVE </button>","<br>") // creating a button next to the div that allows it to remove the submission
+        return div;
+     })
+
+
+
+
+// the function that removes the meme created
+$("form").on("click", function(event){ // under the form section where the movie title and ratings are displayed we are listening for a click..
+    if (event.target.id === "remove"){  // and if the click is a button with the id of remove (aka the remove button)..
+        event.target.parentElement.remove(); // we remove the entire submission which is the div element that its wrapped in
+    }
+})
+    
+
+</script>
+
+</body>
+</html>
